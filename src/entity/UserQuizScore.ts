@@ -10,6 +10,4 @@ export class UserQuizScore extends BaseEntity {
 
   @Column()
   score: string;
-
-//   @ma
 }
