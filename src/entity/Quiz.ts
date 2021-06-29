@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { QuestionSets } from "./QuestionSets";
+import { QuestionSets } from "./QuestionSet";
 
 @Entity("quiz")
 export class Quiz extends BaseEntity {

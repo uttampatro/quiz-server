@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { UserQuizScore } from "./UserQuizScore";
 
-@Entity("users")
+@Entity("user")
 @Unique(["email"])
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
