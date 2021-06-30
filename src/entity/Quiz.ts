@@ -1,5 +1,12 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { QuestionSets } from "./QuestionSet";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { QuestionSet } from "./QuestionSet";
 
 @Entity("quiz")
 export class Quiz extends BaseEntity {
@@ -15,7 +22,7 @@ export class Quiz extends BaseEntity {
   @Column()
   options: string;
 
-  @ManyToOne(() => QuestionSets, questionSets => questionSets.quiz)
+  @ManyToOne(() => QuestionSet, (questionSet) => questionSet.quiz)
   @JoinColumn()
-  questionSets: QuestionSets
+  questionSet: QuestionSet;
 }

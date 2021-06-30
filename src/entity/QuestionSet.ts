@@ -1,14 +1,21 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Quiz } from "./Quiz"
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Quiz } from "./Quiz";
 
 @Entity("questionSet")
-export class QuestionSets extends BaseEntity {
+export class QuestionSet extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: number;
 
   @Column()
   name: string;
 
-  @OneToMany(() => Quiz, quiz => quiz.id)
-  quiz: Quiz[]
+  @OneToMany(() => Quiz, (quiz) => quiz.questionSet)
+  quiz: Quiz[];
 }

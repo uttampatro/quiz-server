@@ -1,13 +1,13 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity("userQuizScore")
+@Entity('userQuizScore')
 export class UserQuizScore extends BaseEntity {
-  @PrimaryGeneratedColumn("uuid")
-  id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: number;
 
-  @Column({ type: "uuid" })
-  quizId: string;
+    @Column({ type: 'uuid' })
+    questionSetId: string;
 
-  @Column()
-  score: string;
+    @Column()
+    score: string;
 }
