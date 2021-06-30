@@ -19,6 +19,7 @@ class QuizService {
         const { questionSetId } = dto;
         const userScore = await UserQuizScore.findOne({
             where: { questionSetId },
+            select: ["id", "score"]
         });
         return userScore;
     }
