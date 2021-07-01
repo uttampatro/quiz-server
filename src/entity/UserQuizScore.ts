@@ -8,6 +8,6 @@ export class UserQuizScore extends BaseEntity {
     @Column({ type: 'uuid' })
     questionSetId: string;
 
-    @Column()
-    score: string;
+    @Column({ nullable: true })
+    score: number;
 }
