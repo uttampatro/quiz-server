@@ -7,7 +7,7 @@
     "node": "12.11.1"
 },
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "start": "nodemon src/server.ts",
     "dev": "nodemon --exec ts-node src/server.ts",
     "build": "tsc",
     "postinstall": "tsc"
