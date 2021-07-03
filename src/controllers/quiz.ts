@@ -40,6 +40,22 @@ class QuizController {
             });
         }
     };
+    createQuestionSets = async (req: Request, res: Response) => {
+        try {
+            const userId = get(req, 'body.userId');
+            const name = get(req, 'body.name');
+            const questionSet = await QuizService.createQuestionSet({
+                userId: userId,
+                name: name,
+            });
+            return res.json(questionSet);
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: 'Something went wrong',
+            });
+        }
+    };
 }
 
 export default new QuizController();

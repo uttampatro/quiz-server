@@ -6,7 +6,7 @@ class UserService {
     const { email, password } = dto;
     const user = await User.findOne({
       where: { email, password },
-      select: ["id", "email"],
+      select: ["id", "email", 'role'],
     });
     return user;
   }

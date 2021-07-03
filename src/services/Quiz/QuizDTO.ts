@@ -9,3 +9,8 @@ export interface FindAllQuizDTO {
 export interface FindUserScore {
     questionSetId: string;
 }
+
+export interface CreateQuestionSetDTO {
+    userId: number
+    name: string
+}

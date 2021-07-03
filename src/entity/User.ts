@@ -1,22 +1,29 @@
 import {
-  BaseEntity,
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  Unique,
-} from "typeorm";
-import { UserQuizScore } from "./UserQuizScore";
+    BaseEntity,
+    Column,
+    Entity,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    Unique,
+} from 'typeorm';
+import { QuestionSet } from './QuestionSet';
+import { UserQuizScore } from './UserQuizScore';
 
-@Entity("user")
-@Unique(["email"])
+@Entity('user')
+@Unique(['email'])
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn("uuid")
-  id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: number;
 
-  @Column()
-  email: string;
+    @Column()
+    email: string;
 
-  @Column({ nullable: true })
-  password: string;
+    @Column({ nullable: true })
+    password: string;
+
+    @Column({ nullable: true })
+    role: string;
+
+    @OneToMany(() => QuestionSet, questionSet => questionSet.user)
+    questionSets: QuestionSet[];
 }
