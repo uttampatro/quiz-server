@@ -18,6 +18,6 @@ router.get('/allQuiz/:id', QuizController.fetchAllQuizBySetId);
 router.get('/userScore/:id', QuizController.fetchUserScore);
 
 //cerate QuestionSet
-router.post('/questionSet', QuizController.createQuestionSets);
+router.post('/addQuestionSet', QuizController.createQuestionSets);
 
 export default router;

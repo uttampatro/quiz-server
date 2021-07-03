@@ -8,11 +8,16 @@ class QuizService {
     async getQuestionSet() {
         const questionSet = await QuestionSet.createQueryBuilder('questionSet')
             .leftJoinAndSelect('questionSet.user', 'user')
+            .leftJoinAndSelect('questionSet.quiz', 'quiz')
             .select('questionSet.id')
             .addSelect('questionSet.name')
             .addSelect('user.id')
             .addSelect('user.email')
             .addSelect('user.role')
+            .addSelect('quiz.id')
+            .addSelect('quiz.question')
+            .addSelect('quiz.answer')
+            .addSelect('quiz.options')
             .getMany();
         return questionSet;
     }
@@ -20,6 +25,7 @@ class QuizService {
         const { questionSetId } = dto;
         const allQuiz = await Quiz.find({
             where: { questionSet: questionSetId },
+            relations: ['questionSet']
         });
         return allQuiz;
     }
@@ -41,6 +47,9 @@ class QuizService {
         questionSet.user = user!;
         await questionSet.save();
         return questionSet;
+    }
+    async createQuestion(){
+        
     }
 }
 
