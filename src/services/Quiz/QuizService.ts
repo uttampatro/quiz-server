@@ -1,7 +1,12 @@
 import { Quiz } from '../../entity/Quiz';
 import { QuestionSet } from '../../entity/QuestionSet';
 import { UserQuizScore } from '../../entity/UserQuizScore';
-import { CreateQuestionSetDTO, FindAllQuizDTO, FindUserScore } from './QuizDTO';
+import {
+    CreateQuestionDTO,
+    CreateQuestionSetDTO,
+    FindAllQuizDTO,
+    // FindUserScore,
+} from './QuizDTO';
 import { User } from '../../entity/User';
 
 class QuizService {
@@ -25,18 +30,18 @@ class QuizService {
         const { questionSetId } = dto;
         const allQuiz = await Quiz.find({
             where: { questionSet: questionSetId },
-            relations: ['questionSet']
+            relations: ['questionSet'],
         });
         return allQuiz;
     }
-    async getUserScore(dto: FindUserScore) {
-        const { questionSetId } = dto;
-        const userScore = await UserQuizScore.findOne({
-            where: { questionSetId },
-            select: ['id', 'score'],
-        });
-        return userScore;
-    }
+    // async getUserScore(dto: FindUserScore) {
+    //     const { questionSetId } = dto;
+    //     const userScore = await UserQuizScore.findOne({
+    //         where: { questionSetId },
+    //         select: ['id', 'score'],
+    //     });
+    //     return userScore;
+    // }
     async createQuestionSet(dto: CreateQuestionSetDTO) {
         const { userId, name } = dto;
         const user = await User.findOne({
@@ -48,8 +53,18 @@ class QuizService {
         await questionSet.save();
         return questionSet;
     }
-    async createQuestion(){
-        
+    async createQuestion(dto: CreateQuestionDTO) {
+        const { questionSetId, question, answer, options } = dto;
+        const questionSet = await QuestionSet.findOne({
+            where: { id: questionSetId },
+        });
+        const quiz = await new Quiz();
+        quiz.question = question;
+        quiz.answer = answer;
+        quiz.options = options;
+        quiz.questionSet = questionSet!;
+        await quiz.save();
+        return quiz;
     }
 }
 

@@ -15,9 +15,10 @@ router.post('/login', UserController.loginUser);
 //Quiz controller
 router.get('/questionSet', QuizController.fetchQuestionSet);
 router.get('/allQuiz/:id', QuizController.fetchAllQuizBySetId);
-router.get('/userScore/:id', QuizController.fetchUserScore);
+// router.get('/userScore/:id', QuizController.fetchUserScore);
 
 //cerate QuestionSet
-router.post('/addQuestionSet', QuizController.createQuestionSets);
+router.post('/addQuestionSet/:id', QuizController.createQuestionSets);
+router.post('/addQuestions/:id', QuizController.createQuestions);
 
 export default router;
