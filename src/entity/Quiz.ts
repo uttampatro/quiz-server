@@ -17,7 +17,7 @@ export class Quiz extends BaseEntity {
     question: string;
 
     @Column()
-    answer: string;
+    answerIndex: number;
 
     @Column('text', { array: true, default: '{}' })
     options: string[];

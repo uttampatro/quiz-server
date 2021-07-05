@@ -28,18 +28,6 @@ class QuizController {
             });
         }
     };
-    // fetchUserScore = async (req: Request, res: Response) => {
-    //     try {
-    //         const questionSetId = get(req, 'params.id');
-    //         const userScore = await QuizService.getUserScore({ questionSetId });
-    //         return res.json(userScore);
-    //     } catch (error) {
-    //         return res.status(500).json({
-    //             success: false,
-    //             message: 'Something went wrong',
-    //         });
-    //     }
-    // };
     createQuestionSets = async (req: Request, res: Response) => {
         try {
             const userId = get(req, 'body.userId');
@@ -60,12 +48,12 @@ class QuizController {
         try {
             const questionSetId = get(req, 'body.questionSetId');
             const question = get(req, 'body.question');
-            const answer = get(req, 'body.answer');
+            const answerIndex = get(req, 'body.answerIndex');
             const options = get(req, 'body.options');
             const quiz = await QuizService.createQuestion({
                 question: question,
                 questionSetId: questionSetId,
-                answer: answer,
+                answerIndex: answerIndex,
                 options: options,
             });
             return res.json(quiz);

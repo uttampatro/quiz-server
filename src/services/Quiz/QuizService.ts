@@ -5,7 +5,6 @@ import {
     CreateQuestionDTO,
     CreateQuestionSetDTO,
     FindAllQuizDTO,
-    // FindUserScore,
 } from './QuizDTO';
 import { User } from '../../entity/User';
 
@@ -21,7 +20,7 @@ class QuizService {
             .addSelect('user.role')
             .addSelect('quiz.id')
             .addSelect('quiz.question')
-            .addSelect('quiz.answer')
+            .addSelect('quiz.answerIndex')
             .addSelect('quiz.options')
             .getMany();
         return questionSet;
@@ -34,14 +33,6 @@ class QuizService {
         });
         return allQuiz;
     }
-    // async getUserScore(dto: FindUserScore) {
-    //     const { questionSetId } = dto;
-    //     const userScore = await UserQuizScore.findOne({
-    //         where: { questionSetId },
-    //         select: ['id', 'score'],
-    //     });
-    //     return userScore;
-    // }
     async createQuestionSet(dto: CreateQuestionSetDTO) {
         const { userId, name } = dto;
         const user = await User.findOne({
@@ -54,13 +45,13 @@ class QuizService {
         return questionSet;
     }
     async createQuestion(dto: CreateQuestionDTO) {
-        const { questionSetId, question, answer, options } = dto;
+        const { questionSetId, question, answerIndex, options } = dto;
         const questionSet = await QuestionSet.findOne({
             where: { id: questionSetId },
         });
         const quiz = await new Quiz();
         quiz.question = question;
-        quiz.answer = answer;
+        quiz.answerIndex = answerIndex;
         quiz.options = options;
         quiz.questionSet = questionSet!;
         await quiz.save();
