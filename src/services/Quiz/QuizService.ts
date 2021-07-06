@@ -1,6 +1,5 @@
 import { Quiz } from '../../entity/Quiz';
 import { QuestionSet } from '../../entity/QuestionSet';
-import { UserQuizScore } from '../../entity/UserQuizScore';
 import {
     CreateQuestionDTO,
     CreateQuestionSetDTO,

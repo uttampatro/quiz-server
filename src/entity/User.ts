@@ -7,7 +7,6 @@ import {
     Unique,
 } from 'typeorm';
 import { QuestionSet } from './QuestionSet';
-import { UserQuizScore } from './UserQuizScore';
 
 @Entity('user')
 @Unique(['email'])
